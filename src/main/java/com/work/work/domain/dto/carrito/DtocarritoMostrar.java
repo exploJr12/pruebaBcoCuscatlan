@@ -1,22 +1,27 @@
 package com.work.work.domain.dto.carrito;
 
-import com.work.work.domain.dto.cliente.DtoClienteCarrito;
-import com.work.work.domain.dto.producto.DtoProductoCarrito;
 import com.work.work.domain.model.Carrito;
 
-import java.time.LocalDate;
-import java.util.List;
+import java.time.LocalDateTime;
 
 public record DtocarritoMostrar(
+
         Long id,
-        LocalDate fecha,
-        DtoClienteCarrito dtoClienteCarrito,
-        List<DtoProductoCarrito> Productos,
-        Integer total
+        LocalDateTime fecha,
+        String cliente,
+        Double total,
+        String estado
+
 ) {
-    public DtocarritoMostrar(Carrito carrito){
-        this(carrito.getId(), carrito.getFecha(),new DtoClienteCarrito(carrito.getCliente()),
-                carrito.getProductos().stream().map(DtoProductoCarrito::new).toList(),
-                carrito.getTotal());
+
+    public DtocarritoMostrar(Carrito carrito) {
+
+        this(
+                carrito.getId(),
+                carrito.getFecha(),
+                carrito.getCliente().getNombre(),
+                carrito.getTotal(),
+                carrito.getEstado()
+        );
     }
 }

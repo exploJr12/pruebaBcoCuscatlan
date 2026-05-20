@@ -1,48 +1,45 @@
 package com.work.work.domain.model;
 
-
 import jakarta.persistence.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name="carrito")
+@Table(name = "ordenes")
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+
 public class Carrito {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, targetEntity = Producto.class)
-    @JoinTable(name = "carrito_productos",
-            joinColumns = @JoinColumn(name = "carrito_id"),
-            inverseJoinColumns = @JoinColumn(name = "producto_id"))
-    private List<Producto> productos;
-    @OneToOne(cascade = CascadeType.PERSIST,fetch = FetchType.LAZY,targetEntity= Cliente.class)
+
+    @ManyToOne(
+            cascade = CascadeType.PERSIST,
+            fetch = FetchType.LAZY,
+            targetEntity = Cliente.class
+    )
+    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
-    private LocalDate fecha;
-    private Integer total;
 
-    public Carrito(Cliente cliente, List<Producto> productos) {
-        this.cliente=cliente;
-        this.productos=productos;
-        this.fecha=LocalDate.now();
-        this.total=costoTotal(productos);
-    }
+    private LocalDateTime fecha;
 
-    public Integer costoTotal(List<Producto> productos){
-        Integer listaSuma=0;
+    private Double total;
 
-        for (int i = 0; i < productos.size(); i++) {
-           var valor= productos.get(i).getPrecio();
-           listaSuma+=valor;
-        }
-        return listaSuma;
+    private String estado;
+
+    public Carrito(Cliente cliente) {
+
+        this.cliente = cliente;
+        this.fecha = LocalDateTime.now();
+        this.total = 0.0;
+        this.estado = "PENDIENTE";
     }
 }
