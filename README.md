@@ -1,3 +1,112 @@
+# Requirements
+
+Before running the project, make sure you have installed:
+
+- Java 17
+- Maven
+- MySQL Server
+- IntelliJ IDEA (recommended)
+
+---
+
+# Database Configuration
+
+Create a MySQL database.
+
+Example:
+
+```sql
+CREATE DATABASE shopping_cart;
+```
+
+Then update the database configuration in:
+
+```text
+src/main/resources/application.properties
+```
+
+Example:
+
+```properties
+spring.datasource.url=jdbc:mysql://localhost:3306/shopping_cart
+spring.datasource.username=root
+spring.datasource.password=your_password
+```
+
+---
+
+# Using Another Database
+
+If you want to use another database engine instead of MySQL:
+
+1. Replace the MySQL dependency in `pom.xml`
+2. Update the JDBC URL
+3. Update the Hibernate dialect if necessary
+4. Configure the correct username and password
+
+Example databases:
+- PostgreSQL
+- SQL Server
+- H2
+
+---
+
+# JWT Configuration
+
+The project uses JWT authentication.
+
+You can configure the secret key in:
+
+```properties
+jwt.secret=your_secret_key
+```
+
+inside:
+
+```text
+application.properties
+```
+
+---
+
+# Running the Application
+
+Clone the repository:
+
+```bash
+git clone <repository_url>
+```
+
+Install dependencies:
+
+```bash
+mvn clean install
+```
+
+Run the application:
+
+```bash
+mvn spring-boot:run
+```
+
+The application will run on:
+
+```text
+http://localhost:8080
+```
+
+---
+
+# Swagger Documentation
+
+Swagger UI:
+
+```text
+http://localhost:8080/swagger-ui/index.html
+```
+
+---
+
 # Authentication
 
 This project uses JWT Authentication with Spring Security.
