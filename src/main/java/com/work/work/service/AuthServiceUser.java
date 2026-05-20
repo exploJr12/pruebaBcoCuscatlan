@@ -1,4 +1,4 @@
-package service;
+package com.work.work.service;
 
 import com.work.work.domain.dto.user.DtoLogin;
 import com.work.work.domain.dto.user.DtoRegister;

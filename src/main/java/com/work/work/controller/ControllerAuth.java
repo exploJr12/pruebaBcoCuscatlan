@@ -2,11 +2,12 @@ package com.work.work.controller;
 
 import com.work.work.domain.dto.user.DtoLogin;
 import com.work.work.domain.dto.user.DtoRegister;
+import com.work.work.service.AuthServiceUser;
+
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import service.AuthServiceUser;
 
 @RestController
 @RequestMapping("/auth")
