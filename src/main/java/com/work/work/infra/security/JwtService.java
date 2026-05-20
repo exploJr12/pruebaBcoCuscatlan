@@ -10,7 +10,8 @@ import java.util.Date;
 @Service
 public class JwtService {
 
-    private final String SECRET_KEY = "mySecretKeyForJwtToken123456";
+    private static final String SECRET_KEY =
+            "jwtsecretkeysuperlargaysegura2026springboot";
 
     public String generateToken(String email) {
 
